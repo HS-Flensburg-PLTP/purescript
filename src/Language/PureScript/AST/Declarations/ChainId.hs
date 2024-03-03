@@ -1,12 +1,16 @@
-module Language.PureScript.AST.Declarations.ChainId
-  ( ChainId
-  , mkChainId
-  ) where
+{-# LANGUAGE DeriveDataTypeable #-}
 
-import Prelude
-import Language.PureScript.AST.SourcePos qualified as Pos
-import Control.DeepSeq (NFData)
+module Language.PureScript.AST.Declarations.ChainId
+  ( ChainId,
+    mkChainId,
+  )
+where
+
 import Codec.Serialise (Serialise)
+import Control.DeepSeq (NFData)
+import Data.Data (Data)
+import Language.PureScript.AST.SourcePos qualified as Pos
+import Prelude
 
 -- |
 -- For a given instance chain, stores the chain's file name and
@@ -14,7 +18,7 @@ import Codec.Serialise (Serialise)
 -- This data is used to determine which instances are part of
 -- the same instance chain.
 newtype ChainId = ChainId (String, Pos.SourcePos)
-  deriving (Eq, Ord, Show, NFData, Serialise)
+  deriving (Data, Eq, Ord, Show, NFData, Serialise)
 
 mkChainId :: String -> Pos.SourcePos -> ChainId
 mkChainId fileName startingSourcePos = ChainId (fileName, startingSourcePos)
