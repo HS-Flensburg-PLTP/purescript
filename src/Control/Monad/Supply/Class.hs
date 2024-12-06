@@ -1,7 +1,8 @@
+{-# LANGUAGE TypeOperators #-}
+
 -- |
 -- A class for monads supporting a supply of fresh names
 --
-
 module Control.Monad.Supply.Class where
 
 import Prelude
